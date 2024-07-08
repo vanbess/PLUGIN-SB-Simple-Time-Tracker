@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Silverback Time Tracker
  * Description: A simple job/activity time tracker plugin.
- * Version: 1.0.0
+ * Version: 1.0.0b
  * Author: WC Bessinger
  * Author URI: https://silverbackdev.co.za
  * License: GPL2
