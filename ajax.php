@@ -95,7 +95,7 @@ function jt_add_job_activity()
 {
     check_ajax_referer('jt_add_job_activity', 'nonce');
 
-    wp_send_json($_POST);
+    // wp_send_json($_POST);
 
     $clientName   = sanitize_text_field($_POST['clientName']);
     $description  = sanitize_text_field($_POST['description']);
