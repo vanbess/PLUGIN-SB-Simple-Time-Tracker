@@ -1,0 +1,113 @@
+#time-tracker-wrap {
+    background-color: white;
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 2em;
+}
+
+#time-tracker-wrap>h1 {
+    font-size: 2em;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 0.75em;
+    font-weight: revert;
+    margin-bottom: 1em;
+}
+
+.timer-container {
+    position: absolute;
+    top: 37px;
+    right: 50px;
+    display: flex;
+    max-width: 500px;
+    align-items: baseline;
+    gap: 1em;
+}
+
+.timer-container>h2 {
+    text-transform: uppercase;
+    font-size: 1.5em;
+}
+
+#timer {
+    font-size: 1.5em;
+    font-family: Consolas, sans-serif;
+    background-color: black;
+    padding: 6px 6px;
+    border-radius: 3px;
+    color: greenyellow;
+}
+
+.container {
+    display: flex;
+    gap: 2em;
+    flex-direction: column;
+}
+
+#time-tracker-wrap label {
+    font-weight: 700;
+    font-style: italic;
+    min-width: 10vw;
+    display: inline-block;
+    position: relative;
+    bottom: 3px;
+}
+
+#time-tracker-wrap input {
+    min-width: 350px;
+    width: 50vw;
+}
+
+#time-tracker-wrap select {
+    min-width: 250px;
+}
+
+#job-list-tile {
+    padding: 1em;
+    background: #efefef;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+#job-list thead th {
+    font-weight: revert;
+    cursor: help;
+}
+
+.no-jobs {
+    text-align: center;
+    color: #ff3000 !important;
+    font-weight: bold;
+}
+
+#job-list tbody tr td {
+    vertical-align: inherit;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.button-danger {
+    background-color: #ce0c0c !important;
+    border: none !important;
+    color: white !important;
+}
+
+.job-actions {
+    padding-top: 18px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.job-btns {
+    display: flex;
+    gap: 1em;
+    padding-bottom: 10px;
+}
+
+.job-btns button {
+    width: 50%;
+}
