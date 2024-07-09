@@ -51,8 +51,23 @@ function jt_update_time_entries()
     $jobID    = sanitize_text_field($_POST['jobID']);
     $duration = sanitize_text_field($_POST['duration']);
 
+    // get existing duration and units
+    $existingDuration = get_post_meta($jobID, 'duration', true);
+    $existingUnits    = get_post_meta($jobID, 'units', true);
+
     // calculate units (1 unit = 1 hour) to 2 decimals
     $units = number_format($duration / 3600, 2);
+
+    // get total duration in seconds
+    $duration = $existingDuration ? $existingDuration + $duration : $duration;
+
+    // get total units
+    $units = $existingUnits ? $existingUnits + $units : $units;
+
+    // check if existing units equals duration; if not, update duration appropriately
+    if ($units != $duration / 3600) {
+        $duration = $units * 3600;
+    }
 
     // calculate duration in hours, minutes, seconds
     $hours    = floor($duration / 3600);
