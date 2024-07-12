@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Silverback Time Tracker
  * Description: A simple job/activity time tracker plugin.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: WC Bessinger
  * Author URI: https://silverbackdev.co.za
  * License: GPL2
@@ -27,6 +27,8 @@ function job_time_tracker_scripts()
         'nonce_save_activities'     => wp_create_nonce('jt_save_activities'),
         'nonce_add_job_activity'    => wp_create_nonce('jt_add_job_activity'),
         'nonce_update_time_entries' => wp_create_nonce('jt_update_time_entries'),
+        'nonce_update_units'        => wp_create_nonce('jt_update_units'),
+        'nonce_update_duration'     => wp_create_nonce('jt_update_duration'),
     ));
     wp_enqueue_style('job-time-tracker-css', plugin_dir_url(__FILE__) . 'styles.css');
 }

@@ -38,6 +38,42 @@
     color: greenyellow;
 }
 
+.units-input,
+.duration-input {
+    min-width: 100px !important;
+    max-width: 100px;
+}
+
+.delete-job {
+    width: 100% !important;
+}
+
+.start-tracking {
+    background: green !important;
+    color: white !important;
+    border-color: green !important;
+}
+
+.stop-tracking {
+    color: red !important;
+    border-color: red !important;
+    background: #ff000021 !important;
+}
+
+.jt-update-prompt {
+    font-size: 12px !important;
+    color: green !important;
+    position: absolute;
+    left: 13px;
+    bottom: 8px;
+    display: none;
+}
+
+.td-duration,
+.td-units {
+    position: relative;
+}
+
 .container {
     display: flex;
     gap: 2em;

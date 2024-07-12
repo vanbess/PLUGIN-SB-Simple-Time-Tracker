@@ -137,3 +137,66 @@ function jt_add_job_activity()
         wp_send_json("Job/activity added successfully. Job ID: {$jobAdded}");
     }
 }
+
+/**
+ * Update units
+ */
+add_action('wp_ajax_jt_update_units', 'jt_update_units');
+
+function jt_update_units()
+{
+    check_ajax_referer('jt_update_units', 'nonce');
+
+    $jobID = sanitize_text_field($_POST['jobID']);
+    $units = sanitize_text_field($_POST['units']);
+
+    $unitsUpdated = update_post_meta($jobID, 'units', $units);
+
+    // also convert to and update duration
+    $duration = $units * 3600;
+    $hours    = floor($duration / 3600);
+    $minutes  = floor(($duration / 60) % 60);
+    $seconds  = $duration % 60;
+    $duration = "{$hours}h {$minutes}m {$seconds}s";
+
+    $durationUpdated = update_post_meta($jobID, 'duration', $duration);
+
+    if ($unitsUpdated  && $durationUpdated) {
+        wp_send_json("Units updated for job ID: {$jobID}");
+    } else {
+        wp_send_json("There was an error updating units for job ID {$jobID}, or the data has not changed.");
+    }
+}
+
+/**
+ * Update duration
+ */
+add_action('wp_ajax_jt_update_duration', 'jt_update_duration');
+
+function jt_update_duration()
+{
+    check_ajax_referer('jt_update_duration', 'nonce');
+
+    // wp_send_json($_POST);
+
+    $jobID        = sanitize_text_field($_POST['jobID']);
+    $durationOrig = preg_replace('/(h|m|s)(?!\s)/', '$1 ', sanitize_text_field($_POST['duration']));
+
+    // convert duration to units from hours, mins, secs.
+    $durationArr     = preg_split('/h|m|s/', $durationOrig, -1, PREG_SPLIT_NO_EMPTY);
+    $hours           = (int)$durationArr[0];
+    $minutes         = (int)$durationArr[1];
+    $seconds         = (int)$durationArr[2];
+    $durationSeconds = ($hours * 3600) + ($minutes * 60) + $seconds;
+
+    // calculate and update units
+    $units           = number_format($durationSeconds / 3600, 2);
+    $unitsUpdated    = update_post_meta($jobID, 'units', $units);
+    $durationUpdated = update_post_meta($jobID, 'duration', $durationOrig);
+
+    if ($unitsUpdated && $durationUpdated) {
+        wp_send_json("Duration updated for job ID: {$jobID}");
+    } else {
+        wp_send_json("There was an error updating duration for job ID {$jobID}, or the data has not changed.");
+    }
+}
