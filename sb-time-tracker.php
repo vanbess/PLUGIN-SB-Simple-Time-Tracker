@@ -19,6 +19,12 @@ add_action('admin_enqueue_scripts', 'job_time_tracker_scripts');
 function job_time_tracker_scripts()
 {
 
+    $screen = get_current_screen();
+
+    if ($screen->base !== 'toplevel_page_job-time-tracker') {
+        return;
+    }
+
     wp_enqueue_script('job-time-tracker-js', plugin_dir_url(__FILE__) . 'scripts.js', array('jquery'), '1.0.0', true);
     wp_localize_script('job-time-tracker-js', 'jobTimeTracker', array(
         'ajaxurl'                   => admin_url('admin-ajax.php'),
